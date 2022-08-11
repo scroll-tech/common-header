@@ -17,22 +17,20 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
     const { backgroundColor } = this.props
     const { open } = this.state
     return (
-      <div className="w-full" style={{ backgroundColor }}>
+      <div className="w-full scroll-component" style={{ backgroundColor }}>
         <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
             <a
               href="https://prealpha.scroll.io/"
               className="flex items-center space-x-2 text-2xl font-medium text-gray-800 dark:text-gray-100"
             >
-              <span>
-                <img
-                  src="https://scroll.io/img/logo_with_text.png"
-                  alt="logo"
-                  width={96}
-                  height={39}
-                  className="cursor-pointer"
-                />
-              </span>
+              <img
+                src="https://scroll.io/img/logo_with_text.png"
+                alt="logo"
+                width={96}
+                height={39}
+                className="cursor-pointer"
+              />
             </a>
             <svg
               className="w-6 h-6 fill-curren lg:hidden"
