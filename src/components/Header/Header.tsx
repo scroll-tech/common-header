@@ -62,12 +62,26 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
                   <a
                     key={item.name}
                     href={item.link}
+                    target={item.isExternal ? "_blank" : "_self"}
                     className={`${
                       this.props.activeTab === item.name &&
                       "text-indigo-500 bg-indigo-100"
                     } w-full px-2 xl:px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none dark:focus:bg-trueGray-700`}
                   >
-                    {item.name}
+                    {item.name}{" "}
+                    {item.isExternal && (
+                      <svg
+                        focusable="false"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        data-testid="OpenInNewIcon"
+                        className="fill-current"
+                        width={"1.2em"}
+                        height={"1.2em"}
+                      >
+                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+                      </svg>
+                    )}
                   </a>
                 ))}
               </div>

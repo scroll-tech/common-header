@@ -1,6 +1,6 @@
 {
   "name": "scroll-common-header",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Scroll common header component",
   "scripts": {
     "rollup": "rollup -c",
