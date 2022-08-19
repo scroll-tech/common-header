@@ -18,7 +18,7 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
     const { open } = this.state
     return (
       <div className="w-full scroll-component" style={{ backgroundColor }}>
-        <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
+        <nav className="container box-border relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
             <a
               href="https://prealpha.scroll.io/"
@@ -57,7 +57,7 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
               )}
             </svg>
             {open ? (
-              <div className="flex flex-wrap w-full my-5 lg:hidden">
+              <div className="flex flex-wrap w-full my-5 lg:hidden ">
                 {navigation.map((item, index) => (
                   <a
                     key={item.name}
@@ -66,7 +66,7 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
                     className={`${
                       this.props.activeTab === item.name &&
                       "text-indigo-500 bg-indigo-100"
-                    } w-full px-2 xl:px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none dark:focus:bg-trueGray-700`}
+                    } flex items-center w-full px-2 xl:px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none dark:focus:bg-trueGray-700`}
                   >
                     {item.name}{" "}
                     {item.isExternal && (
