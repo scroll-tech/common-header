@@ -1,21 +1,42 @@
 import React, { useState } from "react"
 import "./Header.scss"
-import { navigation } from "./contants"
+import { navigation as nav } from "./contants"
 
+const NAV_TYPE_MAP = {
+  normal: "normal",
+  path: "path",
+  custom: "custom",
+}
 export interface HeaderProps {
   activeTab?: string
   backgroundColor?: string
+  type?: "normal" | "path" | "custom"
+  subdomain?: string
+  customNav?: any[]
 }
 
-class Header extends React.Component<HeaderProps, { open: boolean }> {
-  constructor(props: any) {
+class Header extends React.Component<
+  HeaderProps,
+  { open: boolean; navigation: any }
+> {
+  constructor(props: HeaderProps) {
     super(props)
-    this.state = { open: false }
+    const customNav = props.type === NAV_TYPE_MAP.custom
+    this.state = {
+      open: false,
+      navigation: customNav ? props.customNav : nav,
+    }
+  }
+
+  getHyperlink = (tab: any) => {
+    const { subdomain = "", type } = this.props
+    const withPath = type === NAV_TYPE_MAP.path
+    return `https://${subdomain}scroll.io/${withPath ? tab.path : ""}`
   }
 
   render(): React.ReactNode {
     const { backgroundColor } = this.props
-    const { open } = this.state
+    const { open, navigation } = this.state
     return (
       <div className="w-full scroll-component" style={{ backgroundColor }}>
         <nav className="container box-border relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
@@ -58,10 +79,10 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
             </svg>
             {open ? (
               <div className="flex flex-wrap w-full my-5 lg:hidden ">
-                {navigation.map((item, index) => (
+                {navigation.map((item: any) => (
                   <a
                     key={item.name}
-                    href={item.link}
+                    href={this.getHyperlink(item)}
                     target={item.isExternal ? "_blank" : "_self"}
                     className={`${
                       this.props.activeTab === item.name &&
@@ -90,11 +111,11 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
           {/* menu  */}
           <div className="hidden text-center lg:flex lg:items-center">
             <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
-              {navigation.map((tab) => (
+              {navigation.map((tab: any) => (
                 <li className=" nav__item xl:mr-3 " key={tab.name}>
                   <a
                     target={tab.isExternal ? "_blank" : "_self"}
-                    href={tab.link}
+                    href={this.getHyperlink(tab)}
                     className={`${
                       this.props.activeTab === tab.name &&
                       "bg-indigo-100 text-indigo-500"

@@ -15,7 +15,18 @@ const Template: ComponentStory<typeof Header> = (args) => <Header {...args} />
 export const HelloWorld = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 HelloWorld.args = {
-  activeTab: "Guide",
+  activeTab: "Test",
+  type: "path",
+  subdomain: "test.",
+  customNav: [
+    {
+      name: "Test",
+      description: "",
+      isExternal: true,
+      link: "https://test.scroll.io/",
+      path: "Test",
+    },
+  ],
 }
 
 export const ClickMe = Template.bind({})
