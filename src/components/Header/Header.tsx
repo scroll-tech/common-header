@@ -3,15 +3,14 @@ import "./Header.scss"
 import { navigation as nav } from "./constants"
 
 const NAV_TYPE_MAP = {
-  normal: "normal",
+  subdomain: "subdomain",
   path: "path",
   custom: "custom",
 }
 export interface HeaderProps {
   activeTab?: string
   backgroundColor?: string
-  type?: "normal" | "path" | "custom"
-  subdomain?: string
+  type?: "subdomain" | "path" | "custom"
   customNav?: any[]
 }
 
@@ -29,10 +28,19 @@ class Header extends React.Component<
   }
 
   getHyperlink = (tab: any) => {
-    const { subdomain, type } = this.props
-    const withSubdomain = subdomain ? subdomain + "." : ""
-    const withPath = type === NAV_TYPE_MAP.path ? tab.path : ""
-    return `https://${withSubdomain}scroll.io/${withPath}`
+    const { type } = this.props
+    switch (type) {
+      case NAV_TYPE_MAP.subdomain:
+        const subdomain = tab.subdomainOrPath
+        return `https://${subdomain}.scroll.io/`
+      case NAV_TYPE_MAP.path:
+        const path = tab.subdomainOrPath
+        return `/${path}`
+      case NAV_TYPE_MAP.custom:
+        return tab.link
+      default:
+        return
+    }
   }
 
   render(): React.ReactNode {

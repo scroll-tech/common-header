@@ -16,8 +16,7 @@ export const HelloWorld = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 HelloWorld.args = {
   activeTab: "Test",
-  type: "path",
-  subdomain: "test.",
+  type: "path", //subdomain | path | custom
   customNav: [
     {
       name: "Test",
