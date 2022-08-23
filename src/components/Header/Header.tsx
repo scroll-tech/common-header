@@ -1,6 +1,6 @@
-import React, { useState } from "react"
-import "./Header.scss"
+import React from "react"
 import { navigation as nav } from "./constants"
+import "./Header.scss"
 
 const NAV_TYPE_MAP = {
   subdomain: "subdomain",
@@ -51,7 +51,7 @@ class Header extends React.Component<
         <nav className="container box-border relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
             <a
-              href="https://prealpha.scroll.io/"
+              href="/"
               className="flex items-center space-x-2 text-2xl font-medium text-gray-800 dark:text-gray-100"
             >
               <img

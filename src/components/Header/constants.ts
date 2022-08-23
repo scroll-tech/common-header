@@ -1,5 +1,10 @@
 const navigation = [
   {
+    name: "Home",
+    description: "Main Portal",
+    subdomainOrPath: "/",
+  },
+  {
     name: "Guide",
     description: "",
     isExternal: true,
