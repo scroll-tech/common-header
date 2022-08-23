@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "./Header.scss"
-import { navigation as nav } from "./contants"
+import { navigation as nav } from "./constants"
 
 const NAV_TYPE_MAP = {
   normal: "normal",
@@ -29,9 +29,10 @@ class Header extends React.Component<
   }
 
   getHyperlink = (tab: any) => {
-    const { subdomain = "", type } = this.props
-    const withPath = type === NAV_TYPE_MAP.path
-    return `https://${subdomain}scroll.io/${withPath ? tab.path : ""}`
+    const { subdomain, type } = this.props
+    const withSubdomain = subdomain ? subdomain + "." : ""
+    const withPath = type === NAV_TYPE_MAP.path ? tab.path : ""
+    return `https://${withSubdomain}scroll.io/${withPath}`
   }
 
   render(): React.ReactNode {
