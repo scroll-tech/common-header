@@ -2,32 +2,40 @@
 /* windicss layer base */
 @font-face {
   font-family: "TT Norms";
-  src: url("../fonts/TTNorms-Bold.woff2"), url("../fonts/TTNorms-Bold.ttf"),
-    url("../fonts/TTNorms-Bold.otf");
+  src: url("https://scroll.io/fonts/TTNorms-Bold.woff2"),
+    url("https://scroll.io/fonts/TTNorms-Bold.ttf"),
+    url("https://scroll.io/fonts/TTNorms-Bold.otf");
   font-style: normal;
   font-weight: bold;
 }
 
 @font-face {
   font-family: "TT Norms";
-  src: url("../fonts/TTNorms-Regular.woff2"),
-    url("../fonts/TTNorms-Regular.ttf"), url("../fonts/TTNorms-Regular.otf");
+  src: url("https://scroll.io/fonts/TTNorms-Regular.woff2"),
+    url("https://scroll.io/fonts/TTNorms-Regular.ttf"),
+    url("https://scroll.io/fonts/TTNorms-Regular.otf");
   font-style: normal;
   font-weight: normal;
 }
 
 @font-face {
   font-family: "TT Norms";
-  src: url("../fonts/TTNorms-Medium.woff2"), url("../fonts/TTNorms-Medium.ttf"),
-    url("../fonts/TTNorms-Medium.otf");
+  src: url("https://scroll.io/fonts/TTNorms-Medium.woff2"),
+    url("https://scroll.io/fonts/TTNorms-Medium.ttf"),
+    url("https://scroll.io/fonts/TTNorms-Medium.otf");
   font-style: normal;
   font-weight: 500;
 }
 
 .scroll-component {
-  font-family: "TT Norms";
+  font-family: "TT Norms", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   letter-spacing: normal;
   -webkit-font-smoothing: initial;
+  font-variant: normal;
+  font-feature-settings: normal;
   a {
     color: inherit;
     text-decoration: inherit;
@@ -116,6 +124,9 @@
   }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .box-border {
+    box-sizing: border-box;
   }
   .block {
     display: block;

@@ -1,24 +1,54 @@
 import React, { useState } from "react"
 import "./Header.scss"
-import { navigation } from "./contants"
+import { navigation as nav } from "./constants"
 
+const NAV_TYPE_MAP = {
+  subdomain: "subdomain",
+  path: "path",
+  custom: "custom",
+}
 export interface HeaderProps {
   activeTab?: string
   backgroundColor?: string
+  type?: "subdomain" | "path" | "custom"
+  customNav?: any[]
 }
 
-class Header extends React.Component<HeaderProps, { open: boolean }> {
-  constructor(props: any) {
+class Header extends React.Component<
+  HeaderProps,
+  { open: boolean; navigation: any }
+> {
+  constructor(props: HeaderProps) {
     super(props)
-    this.state = { open: false }
+    const customNav = props.type === NAV_TYPE_MAP.custom
+    this.state = {
+      open: false,
+      navigation: customNav ? props.customNav : nav,
+    }
+  }
+
+  getHyperlink = (tab: any) => {
+    const { type } = this.props
+    switch (type) {
+      case NAV_TYPE_MAP.subdomain:
+        const subdomain = tab.subdomainOrPath
+        return `https://${subdomain}.scroll.io/`
+      case NAV_TYPE_MAP.path:
+        const path = tab.subdomainOrPath
+        return `/${path}`
+      case NAV_TYPE_MAP.custom:
+        return tab.link
+      default:
+        return
+    }
   }
 
   render(): React.ReactNode {
     const { backgroundColor } = this.props
-    const { open } = this.state
+    const { open, navigation } = this.state
     return (
       <div className="w-full scroll-component" style={{ backgroundColor }}>
-        <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
+        <nav className="container box-border relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
             <a
               href="https://prealpha.scroll.io/"
@@ -57,17 +87,31 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
               )}
             </svg>
             {open ? (
-              <div className="flex flex-wrap w-full my-5 lg:hidden">
-                {navigation.map((item, index) => (
+              <div className="flex flex-wrap w-full my-5 lg:hidden ">
+                {navigation.map((item: any) => (
                   <a
                     key={item.name}
-                    href={item.link}
+                    href={this.getHyperlink(item)}
+                    target={item.isExternal ? "_blank" : "_self"}
                     className={`${
                       this.props.activeTab === item.name &&
                       "text-indigo-500 bg-indigo-100"
-                    } w-full px-2 xl:px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none dark:focus:bg-trueGray-700`}
+                    } flex items-center w-full px-2 xl:px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none dark:focus:bg-trueGray-700`}
                   >
-                    {item.name}
+                    {item.name}{" "}
+                    {item.isExternal && (
+                      <svg
+                        focusable="false"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        data-testid="OpenInNewIcon"
+                        className="fill-current"
+                        width={"1.2em"}
+                        height={"1.2em"}
+                      >
+                        <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+                      </svg>
+                    )}
                   </a>
                 ))}
               </div>
@@ -76,11 +120,11 @@ class Header extends React.Component<HeaderProps, { open: boolean }> {
           {/* menu  */}
           <div className="hidden text-center lg:flex lg:items-center">
             <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
-              {navigation.map((tab) => (
+              {navigation.map((tab: any) => (
                 <li className=" nav__item xl:mr-3 " key={tab.name}>
                   <a
                     target={tab.isExternal ? "_blank" : "_self"}
-                    href={tab.link}
+                    href={this.getHyperlink(tab)}
                     className={`${
                       this.props.activeTab === tab.name &&
                       "bg-indigo-100 text-indigo-500"
