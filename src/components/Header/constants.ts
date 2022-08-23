@@ -2,7 +2,7 @@ const navigation = [
   {
     name: "Home",
     description: "Main Portal",
-    subdomainOrPath: "/",
+    subdomainOrPath: "",
   },
   {
     name: "Guide",
