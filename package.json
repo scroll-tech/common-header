@@ -1,12 +1,15 @@
 {
   "name": "scroll-common-header",
-  "version": "0.3.2",
+  "version": "0.3.19",
   "description": "Scroll common header component",
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "_____comment": "npm run git -- 'commit-msg'  so you can push and update by a auto way",
+    "git": "npm run rollup && git add . && git commit -m",
+    "postgit": "npm version patch &&  PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git push --follow-tags"
   },
   "author": "zhengqi",
   "license": "ISC",
