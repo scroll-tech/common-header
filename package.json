@@ -1,12 +1,13 @@
 {
   "name": "scroll-common-header",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Scroll common header component",
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepublishOnly": "rollup -c"
   },
   "author": "zhengqi",
   "license": "ISC",
