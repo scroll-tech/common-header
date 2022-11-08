@@ -1,3 +1,5 @@
+Warning, this is deprecated now.
+
 ## Available Scripts
 
 ### Build the library
